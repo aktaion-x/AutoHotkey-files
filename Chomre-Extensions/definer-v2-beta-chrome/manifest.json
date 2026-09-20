@@ -1,0 +1,202 @@
+{
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApnKVc/YNVhqz7PV9RpRVXMWRDDe651/xU7vmDoGpGcDf4ncvXcVtZlcSsN8DCTwX9esrgvayfNtPngrsc++85T3LZf8k3owc8GI0T0BwAOgvmAC/FwSx7l9McDoPPysHJ1LxmbIIUn3o6vU83eu+AhxMioWFkkUVoru6xVDvQA1lBO7xFYLrOJM9iI8QGJXtBtvNSX3RpB+aH8I2UwyUjzMqRCNuH6BhaS6eCbfmUDwbzWLi1ySF9MtMBAdEQh1BitS7oxIY+qcF98wUNvUydtR1yoL+qgVf9tYcCnCq20Rc3mIDoJmj+nUlAbvGBnVqDWQf5+R4ePNOM2GtadgCsQIDAQAB",
+  "name": "__MSG_appName__",
+  "short_name": "Definer",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
+  "version": "1.99.7",
+  "version_name": "2.0.0-beta7",
+  "manifest_version": 3,
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';",
+    "sandbox": "sandbox allow-scripts allow-modals; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; object-src 'none';"
+  },
+  "sandbox": {
+    "pages": [
+      "assets/script-runner/index.html",
+      "assets/offline-dictionary-document/index.html",
+      "assets/offline-dictionary-document/original.html"
+    ]
+  },
+  "icons": {
+    "48": "assets/icons/definer-48.png",
+    "512": "assets/icons/definer-512.png"
+  },
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "unlimitedStorage",
+    "tabs",
+    "declarativeNetRequest",
+    "identity",
+    "offscreen",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "optional_host_permissions": [
+    "<all_urls>"
+  ],
+  "optional_permissions": [
+    "userScripts"
+  ],
+  "action": {
+    "default_title": "Definer",
+    "default_popup": "popup/popup.html?popup=true"
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "inject/bubble.js"
+      ],
+      "exclude_matches": [
+        "*://amazon-adsystem.com/*",
+        "*://*.amazon-adsystem.com/*",
+        "*://aax-us-east-retail-direct.amazon.com/*",
+        "*://*.aax-us-east-retail-direct.amazon.com/*"
+      ],
+      "exclude_globs": [
+        "*://amazon-adsystem.*/*",
+        "*://*.amazon-adsystem.*/*",
+        "*://aax-*-retail-direct.amazon.*/*",
+        "*://*.aax-*-retail-direct.amazon.*/*"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "css": [
+        "inject/content.css"
+      ],
+      "exclude_matches": [
+        "*://amazon-adsystem.com/*",
+        "*://*.amazon-adsystem.com/*",
+        "*://aax-us-east-retail-direct.amazon.com/*",
+        "*://*.aax-us-east-retail-direct.amazon.com/*"
+      ],
+      "exclude_globs": [
+        "*://amazon-adsystem.*/*",
+        "*://*.amazon-adsystem.*/*",
+        "*://aax-*-retail-direct.amazon.*/*",
+        "*://*.aax-*-retail-direct.amazon.*/*",
+        "*://amazon.*/*",
+        "*://*.amazon.*/*"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "inject/mainw.js"
+      ],
+      "exclude_matches": [
+        "*://amazon-adsystem.com/*",
+        "*://*.amazon-adsystem.com/*",
+        "*://aax-us-east-retail-direct.amazon.com/*",
+        "*://*.aax-us-east-retail-direct.amazon.com/*"
+      ],
+      "exclude_globs": [
+        "*://amazon-adsystem.*/*",
+        "*://*.amazon-adsystem.*/*",
+        "*://aax-*-retail-direct.amazon.*/*",
+        "*://*.aax-*-retail-direct.amazon.*/*"
+      ],
+      "all_frames": true,
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "inject/bubble-relay-bootstrap.js"
+      ],
+      "exclude_matches": [
+        "*://amazon-adsystem.com/*",
+        "*://*.amazon-adsystem.com/*",
+        "*://aax-us-east-retail-direct.amazon.com/*",
+        "*://*.aax-us-east-retail-direct.amazon.com/*"
+      ],
+      "exclude_globs": [
+        "*://amazon-adsystem.*/*",
+        "*://*.amazon-adsystem.*/*",
+        "*://aax-*-retail-direct.amazon.*/*",
+        "*://*.aax-*-retail-direct.amazon.*/*"
+      ],
+      "all_frames": true,
+      "run_at": "document_start",
+      "match_origin_as_fallback": true
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_sources",
+        "enabled": true,
+        "path": "dnr/sources.json"
+      }
+    ]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    },
+    {
+      "resources": [
+        "chunks/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    },
+    {
+      "resources": [
+        "locales/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    },
+    {
+      "resources": [
+        "pdf-reader/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    },
+    {
+      "resources": [
+        "inject/bubble.css",
+        "inject/bubble.js",
+        "inject/bubble-relay.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  }
+}

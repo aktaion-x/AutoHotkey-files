@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Extension Privacy Toggle",
+  "version": "1.0.0",
+    "icons": {
+    "16": "img/16.png",
+    "32": "img/32.png",
+    "48": "img/48.png",
+    "128": "img/128.png"
+  },
+  "description": "Toggle other Chrome extensions on and off with a keyboard shortcut.",
+  "permissions": [
+    "management",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "toggle-extensions": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+D",
+        "mac": "Command+Shift+D"
+      },
+      "description": "Toggle extension privacy mode"
+    }
+  }
+}

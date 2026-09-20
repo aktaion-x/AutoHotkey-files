@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes CRUD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app">
+
+        <header class="header">
+            <div>
+                <div class="logo-container">
+                    <h1>NotesDisplayer</h1>
+                    <div id="fileName" class="file-name">
+                        No file opened
+                    </div>
+                </div>
+                <div class="toggle-container">
+                    <span>Display Horizontal</span>
+                    <label class="toggle" id="toggleView">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="openBtn" class="btn primary">
+                    Open Notes
+                </button>
+
+                <button id="saveBtn" class="btn success" disabled>
+                    Save
+                </button>
+            </div>
+        </header>
+
+        <main>
+
+            <div class="toolbar">
+                <div>
+                    <strong id="noteCount">0</strong>
+                    <span>notes</span>
+                </div>
+
+                <button id="addBtn" class="btn primary" disabled>
+                    + Add Note
+                </button>
+            </div>
+
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon">📝</div>
+                <h2>No Notes file loaded</h2>
+                <p>
+                    Open a Notes file containing an array of
+                    <code>timestamp</code> and <code>note</code> objects.
+                </p>
+
+                <button id="emptyOpenBtn" class="btn primary">
+                    Open File
+                </button>
+            </div>
+
+            <div id="notesContainer" class="notes-container">
+            </div>
+
+        </main>
+
+        <div id="status" class="status"></div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

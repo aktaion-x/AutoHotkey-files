@@ -4,36 +4,44 @@
 ; Disabling CapsLock Default state
 ; =========================================================
 
-SetCapsLockState "AlwaysOff"
+; SetCapsLockState "AlwaysOff"
 
-myCaps := false
+; myCaps := false
 
-#F10::
-{
-    global myCaps
-    myCaps := !myCaps
+; #F10::
+; {
+;     global myCaps
+;     myCaps := !myCaps
 
-    if myCaps
-        SetCapsLockState "On"
-    else
-        SetCapsLockState "Off"
-}
-#F11::
-{
-    global myCaps
-    myCaps := false
-    SetCapsLockState "AlwaysOff"
-}
+;     if myCaps
+;         SetCapsLockState "On"
+;     else
+;         SetCapsLockState "Off"
+; }
+; #F11::
+; {
+;     global myCaps
+;     myCaps := false
+;     SetCapsLockState "AlwaysOff"
+; }
+
+; Send("{Tab}")
+; Send("{Enter}")
+; Send("{Escape}")
+; Send("{Right}")
+; Send("{Left}")
+; Send("{Up}")
+; Send("{Down}")
 
 ; =========================================================
 ; Jumping around
 ; =========================================================
 
 
-CapsLock & a::Left
-CapsLock & s::Down
-CapsLock & w::Up
-CapsLock & d::Right
+; CapsLock & a:: Send("{Left}")
+; CapsLock & s:: Send("{Down}")
+; CapsLock & w:: Send("{Up}")
+; CapsLock & d:: Send("{Right}")
 
 ; CapsLock & u::Home
 ; CapsLock & o::End
@@ -47,8 +55,8 @@ CapsLock & d::Right
 ; =========================================================
 
 
-CapsLock & q:: Send "{WheelUp}"
-CapsLock & e:: Send "{WheelDown}"
+CapsLock & w:: Send "{WheelUp}"
+CapsLock & s:: Send "{WheelDown}"
 
 
 ; =========================================================
@@ -68,9 +76,9 @@ CapsLock & e:: Send "{WheelDown}"
 ; =========================================================
 
 
-CapsLock & 1::#^Left
-CapsLock & 2::#Tab
-CapsLock & 3::#^Right
+; CapsLock & 1::Send("#^{Left}")
+; CapsLock & 2::Send("#{Tab}")
+; CapsLock & 3::Send("#^{Right}")
 
 
 ; =========================================================
@@ -78,8 +86,11 @@ CapsLock & 3::#^Right
 ; =========================================================
 
 
-#`:: Send("{Media_Play_Pause}")
-#w::+F10
+;#`:: Send("{Media_Play_Pause}")
+;#w:: Send("{AppsKey}")
+;^CapsLock::Send("{F11}")
+!w:: Send("{AppsKey}")
+^Escape::Send("{F11}")
 
 
 ; =========================================================
@@ -104,10 +115,64 @@ CapsLock & 3::#^Right
     SendText "<center></center>"
     Send "{Left 9}"
 }
-::/m::
+::/mk::
 {
     SendText "<mark></mark>"
     Send "{Left 7}"
+}
+::/rmk::
+{
+    SendText "<mark class='red'></mark>"
+    Send "{Left 7}"
+}
+::/ymk::
+{
+    SendText "<mark class='yellow'></mark>"
+    Send "{Left 7}"
+}
+::/gmk::
+{
+    SendText "<mark class='green'></mark>"
+    Send "{Left 7}"
+}
+::/bmk::
+{
+    SendText "<mark class='blue'></mark>"
+    Send "{Left 7}"
+}
+::/wmk::
+{
+    SendText "<mark class='white'></mark>"
+    Send "{Left 7}"
+}
+#HotIf
+::/lorem:: 
+{
+    SendText "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+}
+
+
+; =========================================================
+; Mouse Controlling
+; =========================================================
+
+
+ModifyXButtons := false
+
+^F1::
+{
+    global ModifyXButtons
+    ModifyXButtons := !ModifyXButtons
+}
+
+#HotIf ModifyXButtons
+XButton1::
+{
+    Send "{Esc}"
+}
+XButton2::
+{
+    Send("!q")
 }
 #HotIf
 
@@ -117,5 +182,5 @@ CapsLock & 3::#^Right
 ; =========================================================
 
 
-^!r:: Reload
+!F1:: Reload
 

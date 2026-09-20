@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[6402],{3(n,t,o){var s,a;o.r(t),o.d(t,{TranslationEntry:()=>s,TranslationFile:()=>e,TranslationMeta:()=>a}),function(n){n.OPTIONS="options",n.POPUP="popup",n.CONTENT="content",n.BACKGROUND="background"}(s||(s={})),function(n){n.INFO="info",n.NOTES="notes",n.SETTINGS="settings"}(a||(a={}));const e={...s,...a}}}]);

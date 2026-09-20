@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "JSON Notes CRUD",
+    "version": "1.0.0",
+    "description": "Edit a JSON array of timestamp/note objects.",
+    "action": {
+        "default_title": "JSON Notes CRUD"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "icons": {
+        "16": "img/icon16.png",
+        "32": "img/icon32.png",
+        "48": "img/icon48.png",
+        "128": "img/icon128.png"
+    }
+}

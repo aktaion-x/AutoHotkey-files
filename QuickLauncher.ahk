@@ -9,6 +9,7 @@ commands := [
     { type:"hotkey", key: "q", name: "Helium", exe: "chrome.exe" }, 
     { type:"hotkey", key: "z", name: "Readest", exe: "https://web.readest.com/" }, 
     { type:"hotkey", key: "x", name: "ChatGPT", exe: "https://chatgpt.com/" }, 
+{ type:"hotkey", key: "-", name: "Definer Settings", exe: "chrome.exe chrome-extension://noagjioaihamoljcbelhdlldnmlgnkon/options/options.html#/history/list?size=50" }, 
     { type:"hotkey", key: "g", name: "Google", exe: "https://google.com/" }, 
     { type:"hotkey", key: ";", name: "DuckDuckGo", exe: '"https://duckduckgo.com/"' }, 
     { type:"hotkey", key: "'", name: "DuckDuckGo Incognito", exe: 'chrome.exe --incognito "https://duckduckgo.com/"' }, 
@@ -26,7 +27,9 @@ commands := [
     { type:"seperator", key: true, title: "Windows" }, 
     { type:"hotkey", key: "n", name: "Notepad", exe: "notepad.exe" }, 
     { type:"hotkey", key: "e", name: "Explorer", exe: "explorer C:\Users\TLS" }, 
-    { type:"hotkey", key: "/", name: "Edit files", exe: 'explorer "C:\Users\TLS\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"' }
+    { type:"hotkey", key: "d", name: "Downloads", exe: 'explorer "C:\Users\TLS\Downloads"' },
+    { type:"hotkey", key: "f", name: "Documents", exe: 'explorer "C:\Users\TLS\Documents"' },
+    { type:"hotkey", key: "/", name: "Edit files", exe: 'explorer "C:\Users\TLS\Documents\AutoHotkey Repo"' }
 ]
 
 
@@ -35,6 +38,11 @@ commands := [
 ; ============================================================
 
 #CapsLock::
+{
+    Send("")
+    Launcher()
+}
+!CapsLock::
 {
     Launcher()
 }
@@ -155,7 +163,7 @@ Launcher()
         hook.Start()
         hook.Wait()
 
-        key := StrLower(hook.Input)
+        key := hook.Input
 
         ; Escape closes the launcher.
         if (key = Chr(27))
@@ -195,4 +203,4 @@ Launcher()
 ; =========================================================
 
 
-^!m:: Reload
+!F1:: Reload
